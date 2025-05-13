@@ -1,12 +1,11 @@
-
-#include "TradeSystem.h"
+#include "Stronghold.h"
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
 #include <ctime>
 using namespace std;
 
-TradeSystem::TradeSystem()
+TradeSystem::TradeSystem() 
 {
     maxTrades = 10;
     tradeCount = 0;
@@ -28,14 +27,16 @@ TradeSystem::~TradeSystem()
 
 void TradeSystem::resizeIfNeeded()
 {
-    if (tradeCount == maxTrades) {
+    if (tradeCount == maxTrades)
+    {
         maxTrades *= 2;
         string* newTraders = new string[maxTrades];
         string* newResources = new string[maxTrades];
         string* newGoods = new string[maxTrades];
         string* newTypes = new string[maxTrades];
 
-        for (int i = 0; i < tradeCount; ++i) {
+        for (int i = 0; i < tradeCount; ++i) 
+        {
             newTraders[i] = traders[i];
             newResources[i] = resourcesOffered[i];
             newGoods[i] = goodsRequested[i];
@@ -54,7 +55,8 @@ void TradeSystem::resizeIfNeeded()
     }
 }
 
-void TradeSystem::offerTrade(const string& trader, const string& resource, const string& requestedGood) {
+void TradeSystem::offerTrade(const string& trader, const string& resource, const string& requestedGood) 
+{
     resizeIfNeeded();
 
     traders[tradeCount] = trader;
@@ -64,7 +66,8 @@ void TradeSystem::offerTrade(const string& trader, const string& resource, const
     tradeCount++;
 
     ofstream file(tradeLogFile.c_str(), ios::app);
-    if (file.is_open()) {
+    if (file.is_open()) 
+    {
         file << "TRADE: " << trader << " offered " << resource << " in exchange for " << requestedGood << "\n";
         file.close();
     }
@@ -72,7 +75,8 @@ void TradeSystem::offerTrade(const string& trader, const string& resource, const
     cout << "[Trade] Offer successfully logged.\n";
 }
 
-void TradeSystem::attemptSmuggle(const string& smuggler, const string& contraband, const string& destination) {
+void TradeSystem::attemptSmuggle(const string& smuggler, const string& contraband, const string& destination)
+{
     resizeIfNeeded();
     bool caught = (rand() % 100) < 30;
 
@@ -83,13 +87,16 @@ void TradeSystem::attemptSmuggle(const string& smuggler, const string& contraban
     tradeCount++;
 
     ofstream file(tradeLogFile.c_str(), ios::app);
-    if (file.is_open()) {
-        if (caught) {
+    if (file.is_open()) 
+    {
+        if (caught) 
+        {
             file << "SMUGGLING FAILED: " << smuggler << " was caught trying to move " << contraband
                 << " to " << destination << "\n";
             cout << "[Smuggling] Failed! " << smuggler << " was caught.\n";
         }
-        else {
+        else 
+        {
             file << "SMUGGLING SUCCESS: " << smuggler << " successfully moved " << contraband
                 << " to " << destination << "\n";
             cout << "[Smuggling] Success! " << contraband << " delivered to " << destination << "\n";
@@ -98,26 +105,32 @@ void TradeSystem::attemptSmuggle(const string& smuggler, const string& contraban
     }
 }
 
-void TradeSystem::imposeEmbargo(const string& traderName) {
+void TradeSystem::imposeEmbargo(const string& traderName) 
+{
     ofstream file(tradeLogFile.c_str(), ios::app);
-    if (file.is_open()) {
+    if (file.is_open())
+    {
         file << "EMBARGO: All trades and smuggling with " << traderName << " are blocked.\n";
         file.close();
     }
     cout << "[Embargo] Trade restrictions imposed on " << traderName << ".\n";
 }
 
-void TradeSystem::viewTradeHistory() const {
+void TradeSystem::viewTradeHistory() const 
+{
     ifstream file(tradeLogFile.c_str());
     string line;
-    if (file.is_open()) {
+    if (file.is_open()) 
+    {
         cout << "--- Trade and Smuggling History ---\n";
-        while (getline(file, line)) {
+        while (getline(file, line)) 
+        {
             cout << line << "\n";
         }
         file.close();
     }
-    else {
+    else
+    {
         cout << "Unable to open trade log.\n";
     }
 }

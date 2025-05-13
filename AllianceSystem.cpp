@@ -1,4 +1,4 @@
-#include "AllianceSystem.h"
+#include "Stronghold.h"
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -58,25 +58,31 @@ void AllianceSystem::formAlliance(const string& player1, const string& player2)
     }
 }
 
-void AllianceSystem::breakAlliance(const string& player1, const string& player2) {
-    for (int i = 0; i < currentAllianceCount; ++i) {
+void AllianceSystem::breakAlliance(const string& player1, const string& player2)
+{
+    for (int i = 0; i < currentAllianceCount; ++i) 
+    {
         if ((player1Allies[i] == player1 && player2Allies[i] == player2) ||
-            (player1Allies[i] == player2 && player2Allies[i] == player1)) {
-            // Break the alliance
-            for (int j = i; j < currentAllianceCount - 1; ++j) {
+            (player1Allies[i] == player2 && player2Allies[i] == player1))
+        {
+            
+            for (int j = i; j < currentAllianceCount - 1; ++j)
+            {
                 player1Allies[j] = player1Allies[j + 1];
                 player2Allies[j] = player2Allies[j + 1];
             }
             currentAllianceCount--;
 
             ofstream outFile(allianceLogFile.c_str(), ios::app);
-            if (outFile.is_open()) {
+            if (outFile.is_open())
+            {
                 outFile << "Alliance broken between " << player1 << " and " << player2 << "\n";
                 outFile << "Consequence: Trust lost, potential conflict triggered.\n";
                 outFile.close();
                 cout << "Alliance broken.\n";
             }
-            else {
+            else 
+            {
                 cout << "Error: Unable to open alliance log.\n";
             }
             return;
@@ -85,32 +91,41 @@ void AllianceSystem::breakAlliance(const string& player1, const string& player2)
     cout << "No alliance exists between " << player1 << " and " << player2 << "\n";
 }
 
-void AllianceSystem::viewCurrentAlliances() const {
+void AllianceSystem::viewCurrentAlliances() const
+{
     cout << "--- Current Alliances ---\n";
-    for (int i = 0; i < currentAllianceCount; ++i) {
+    for (int i = 0; i < currentAllianceCount; ++i) 
+    {
         cout << player1Allies[i] << " <--> " << player2Allies[i] << "\n";
     }
 }
 
-void AllianceSystem::viewAllianceHistory() const {
+void AllianceSystem::viewAllianceHistory() const
+{
     ifstream inFile(allianceLogFile.c_str());
     string line;
-    if (inFile.is_open()) {
+    if (inFile.is_open()) 
+    {
         cout << "--- Alliance History ---\n";
-        while (getline(inFile, line)) {
+        while (getline(inFile, line))
+        {
             cout << line << "\n";
         }
         inFile.close();
     }
-    else {
+    else 
+    {
         cout << "Error: Unable to open alliance log.\n";
     }
 }
 
-bool AllianceSystem::isAllied(const string& player1, const string& player2) const {
-    for (int i = 0; i < currentAllianceCount; ++i) {
+bool AllianceSystem::isAllied(const string& player1, const string& player2) const 
+{
+    for (int i = 0; i < currentAllianceCount; ++i)
+    {
         if ((player1Allies[i] == player1 && player2Allies[i] == player2) ||
-            (player1Allies[i] == player2 && player2Allies[i] == player1)) {
+            (player1Allies[i] == player2 && player2Allies[i] == player1))
+        {
             return true;
         }
     }

@@ -316,4 +316,92 @@ public:
 	void weatherDisaster(Resource& res);
 	void betrayal(Economy& eco);
 };
+
+
+class AllianceSystem
+{
+private:
+	string* player1Allies;
+	string* player2Allies;
+	int currentAllianceCount;
+	int maxAlliances;
+	string allianceLogFile;
+
+public:
+	AllianceSystem();
+
+	void formAlliance(const string& player1, const string& player2);
+	void breakAlliance(const string& player1, const string& player2);
+	void viewCurrentAlliances() const;
+	void viewAllianceHistory() const;
+	bool isAllied(const string& player1, const string& player2) const;
+
+	~AllianceSystem();
+};
+
+
+class CommunicationSystem
+{
+private:
+	string chatLogFile;
+
+public:
+	CommunicationSystem();
+	void sendMessage(const string& sender, const string& receiver, const string& message);
+	void viewAllMessages() const;
+	void viewMessagesFromSender(const string& sender) const;
+};
+
+
+
+
+class TradeSystem
+{
+private:
+	string* traders;
+	string* resourcesOffered;
+	string* goodsRequested;
+	string* tradeType;
+	int tradeCount;
+	int maxTrades;
+	string tradeLogFile;
+
+	void resizeIfNeeded();
+
+public:
+	TradeSystem();
+	~TradeSystem();
+
+	void offerTrade(const string& trader, const string& resource, const string& requestedGood);
+	void attemptSmuggle(const string& smuggler, const string& contraband, const string& destination);
+	void imposeEmbargo(const string& traderName);
+	void viewTradeHistory() const;
+};
+
+
+class Kingdom
+{
+private:
+	string name;
+	int armyStrength;
+	int resources;
+	bool inWar;
+public:
+	Kingdom(string n, int army, int res);
+	string getName();
+	int getArmyStrength();
+	int getResources();
+	void gainResources(int r);
+	void loseResources(int r);
+	void setWarStatus(bool status);
+	bool isInWar();
+};
+
+class ConflictSystem
+{
+public:
+	void declareWar(Kingdom* k1, Kingdom* k2);
+	void resolveBattle(Kingdom* k1, Kingdom* k2);
+	void betrayAlly(Kingdom* betrayer, Kingdom* ally);
+};
 #endif
