@@ -1,4 +1,4 @@
-#include "Kingdom.h"
+#include "Stronghold.h"
 Kingdom::Kingdom(string n, int army, int res) 
 {
     name = n;
