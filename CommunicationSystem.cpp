@@ -1,4 +1,4 @@
-#include "CommunicationSystem.h"
+#include "Stronghold.h"
 #include <iostream>
 #include <fstream>
 using namespace std;
