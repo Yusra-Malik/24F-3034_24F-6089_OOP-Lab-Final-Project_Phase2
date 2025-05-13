@@ -1,4 +1,4 @@
-#include "ConflictSystem.h"
+#include "Stronghold.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
