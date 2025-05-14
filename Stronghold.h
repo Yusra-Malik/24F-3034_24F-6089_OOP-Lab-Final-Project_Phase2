@@ -6,7 +6,7 @@
 using namespace std;
 
 const int totalResources = 5;
-const int totalClasses = 3;
+const int totalClasses = 6;
 class SocialStructure
 {
 protected:
