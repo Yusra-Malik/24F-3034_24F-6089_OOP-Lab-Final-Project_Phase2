@@ -1,0 +1,6 @@
+﻿  AllianceSystem.cpp
+  TradeSystem.cpp
+D:\yusramalik\semester 2\OPP Lab\finalproject\24F-3034_24F-6089_OOP-Lab-Final-Project\TradeSystem.cpp(17,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  main.cpp
+  Generating Code...
+  finalproject.vcxproj -> D:\yusramalik\semester 2\OPP Lab\finalproject\24F-3034_24F-6089_OOP-Lab-Final-Project\x64\Debug\finalproject.exe
